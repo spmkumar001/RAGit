@@ -9,6 +9,11 @@ from langgraph.checkpoint.memory import InMemorySaver
 from pydantic import BaseModel, Field
 
 
+class Supervisor(TypedDict):
+    request: str
+    agent_to_use: str
+    output: str
+
 class Research(BaseModel):
     topic: str = Field(description="the subject researched")
     facts: list[str] = Field(description="key facts about the topic")

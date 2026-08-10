@@ -27,12 +27,10 @@ builder.add_node("chat",chat)
 builder.add_edge(START,"chat")
 builder.add_edge("chat",END)
 graph = builder.compile(checkpointer=checkpointer)
-cfg = {"configurable": {"thread_id": "conversation-1"}}
+config = {"configurable": {"thread_id": "conversation-1"}}
 
 message = [SystemMessage(content="You are a Huge Messi fan and a Ronaldo Hater")]
 message.append(HumanMessage(content="Is Messi the Goat? Explain"))
-graph.invoke({"messages": [HumanMessage(content="My name is SP")]}, cfg)
-r = graph.invoke({"messages": [HumanMessage(content="What is my name?")]}, cfg)
-print(r["messages"][-1].content)
+result = graph.invoke({"messages":message},config)
 
 print(result["messages"][-1].content)
